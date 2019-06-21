@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Spa_AppV1.1_3.4</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home_spa_app">home_spaApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- Strings para Idioma español -->
+
+    <string name="personalizarPerfil">Personalizar Perfil</string>
+    <string name="mediosPago">Medios de pago</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="invitarAmigos">Invitar amigos</string>
+    <string name="soporte">Soporte</string>
+    <string name="registrarNegocio">Quiero registrar mi negocio</string>
+    <string name="publicar">Publicar</string>
+    <string name="seguir">Seguir</string>
+    <string name="reservar">Reservar</string>
+    <string name="atras">Atrás</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="queQuieres">¿Qué deseas hacer?</string>
+    <string name="queBuscas">¿Qué estás buscando?</string>
+    <string name="queHayNuevo">¿Qué hay de nuevo?</string>
+    <string name="publicaciones">Publicaciones</string>
+    <string name="usuarios">Usuarios</string>
+    <string name="enlace">Enlace</string>
+    <string name="efectivo">Efectivo</string>
+    <string name="tarjeta">Tarjeta débito/crédito</string>
+    <string name="paypal">PayPal</string>
+    <string name="tema">Tema</string>
+    <string name="idioma">Idioma</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="cuenta">Cuenta</string>
+    <string name="claro">Claro</string>
+    <string name="oscuro">Oscuro</string>
+    <string name="espanol">Español</string>
+    <string name="ingles">Inglés</string>
+    <string name="activar">Activar</string>
+    <string name="desactivar">Desactivar</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="cerrarSesion">Cerrar Sesión</string>
+    <string name="escribirNombreUsuario">Escribe tu nombre de usuario</string>
+    <string name="seleccionarFechaNacimiento">Selecciona tu fecha de nacimiento</string>
+    <string name="noCambiarNombre">No puedes cambiar tu nombre</string>
+    <string name="cambiarHistoria">Escribe tu historia</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="historiaMayorA144">No puedes ingresar una historia mayor a 144 caracteres</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
+    <string name="noEspecificaGenero">No especificar</string>
+    <string name="seleccionarGenero">Selecciona tu género</string>
+    <string name="guardarCambios">Guardar cambios</string>
+    <string name="noPuedesCambiarCorreo">No puedes cambiar tu correo electrónico</string>
+    <string name="escribirNumeroCelular">Escribe tu número de celular</string>
+    <string name="infoAlmacenada">Información almacenada con éxito</string>
+    <string name="noHayCambios">No hay cambios para almacenar</string>
+    <string name="userVal">Nombre de usuario incorrecto</string>
+    <string name="userValEmpty">Debes ingresar tu nombre de usario</string>
+    <string name="userValtxt">Tu nombre de usuario no puede contener espacios o caracteres especiales</string>
+    <string name="userValExtension">Tu nombre de usuario debe contener entre 3 y 15 caracteres</string>
+    <string name="numberVal">Número Incorrecto</string>
+    <string name="numberValExtension">Tu número de celular debe tener 10 caracteres numéricos</string>
+    <string name="postPublicado">Post publicado</string>
+    <string name="errorConexion">Error de conexión</string>
+    <string name="historyEmpty">Debes ingresar una historia</string>
+    <string name="historyVal">Historia incorrecta</string>
+    <string name="historyExtension">La historia del post debe contener más de 2 caracteres y menos de 144</string>
+    <string name="verPublicacion">Ver publicación</string>
+    <string name="ahoraTeGusta">Ahora te gusta esta publicación</string>
+    <string name="ahoraSigues">Ahora sigues a </string>
+    <string name="imagenAlmacenada">Imagen almacenada</string>
+    <string name="imagenModificada">Imagen modificada con éxito</string>
+    <string name="miNegocio">Mi negocio</string>
+
+    <string-array name="GenderSelectionBox">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>No especificar</item>
+    </string-array>
+
+    <string-array name="PostAction">
+        <item>Ver publicación</item>
+        <item>Ver Perfil</item>
+        <item>Me gusta esta publicación</item>
+    </string-array>
+
+    <string-array name="PostActionUserAct">
+        <item>Ver publicación</item>
+        <item>Me gusta esta publicación</item>
+    </string-array>
+
+    <string-array name="PostActionFavs">
+        <item>Ver publicación</item>
+        <item>Ver Perfil</item>
+    </string-array>
+
+</resources>

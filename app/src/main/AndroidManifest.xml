@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.example.spa_appv11_34">
+
+    <dist:module dist:instant="true" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <meta-data
+        android:name="unityplayer.SkipPermissionsDialog"
+        android:value="false" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".RegistrarNegocio"></activity>
+        <activity android:name=".negocioVisitante" />
+        <activity android:name=".usuarioVisitante" />
+        <activity android:name=".negocioPropio" />
+        <activity android:name=".usuarioPropio" />
+
+        <service
+            android:name=".MyNotService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".userPostsActivity" />
+        <activity android:name=".SearchActivity2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".postViewerActivity" />
+        <activity android:name=".SoporteActivity" />
+        <activity android:name=".CompartirActivity" />
+        <activity android:name=".AjustesActivity" />
+        <activity android:name=".FavoritosActivity" />
+        <activity android:name=".PagosActivity" />
+        <activity android:name=".PersonalizarPerfil" />
+        <activity
+            android:name=".SubirFotoActivity"
+            android:hardwareAccelerated="true" />
+        <activity android:name=".MyPostActivity" />
+        <activity
+            android:name=".home_spaApp"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Register2" />
+        <activity android:name=".Register" />
+        <activity android:name=".Login" />
+        <activity
+            android:name=".Splash"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".imageViewer" />
+        <activity android:name=".CreatePost" />
+        <activity android:name=".createPost0" />
+        <activity android:name=".ActividadBienvenida" />
+    </application>
+
+</manifest>
