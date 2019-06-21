@@ -15,7 +15,7 @@ import android.widget.SearchView;
 
 import com.example.spa_appv11_34.Fragmentos.searchPost;
 import com.example.spa_appv11_34.Fragmentos.searchUsers;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.localAdapters.usersSearchAdapter;
 import com.example.spa_appv11_34.localAdapters.viewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

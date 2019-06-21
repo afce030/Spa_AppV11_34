@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioPreferences;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

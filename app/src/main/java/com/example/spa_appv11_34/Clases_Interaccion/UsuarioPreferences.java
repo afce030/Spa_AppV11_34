@@ -1,4 +1,4 @@
-package com.example.spa_appv11_34.Interaction_Classes;
+package com.example.spa_appv11_34.Clases_Interaccion;
 
 public class UsuarioPreferences {
 

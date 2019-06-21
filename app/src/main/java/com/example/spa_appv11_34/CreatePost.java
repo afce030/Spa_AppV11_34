@@ -18,8 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.spa_appv11_34.Interaction_Classes.UserPostDatabase;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.References.UserReferences;
 import com.example.spa_appv11_34.localAdapters.suggestedUsersAdapter;
 import com.google.android.gms.tasks.OnFailureListener;

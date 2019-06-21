@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
 
-
 public class AjustesActivity extends AppCompatActivity {
 
     private TextView logout;

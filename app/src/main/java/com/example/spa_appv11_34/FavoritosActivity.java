@@ -14,15 +14,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Holders.miniPostHolder;
-import com.example.spa_appv11_34.Interaction_Classes.UserPostDatabase;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
-import com.example.spa_appv11_34.Interaction_Classes.dateObject;
+import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.References.UserReferences;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

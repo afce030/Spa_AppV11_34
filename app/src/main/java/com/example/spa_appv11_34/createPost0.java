@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.References.UserReferences;
 import com.example.spa_appv11_34.localAdapters.imagesGalleryAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;

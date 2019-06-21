@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.example.spa_appv11_34.Fragmentos.HomeFragment;
 import com.example.spa_appv11_34.Fragmentos.NotificationFragment;
 import com.example.spa_appv11_34.Fragmentos.SearchFragment;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.References.UserReferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;

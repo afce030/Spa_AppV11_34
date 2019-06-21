@@ -17,15 +17,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Holders.PostHolder;
-import com.example.spa_appv11_34.Interaction_Classes.UserPostDatabase;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioPreferences;
+import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
 import com.example.spa_appv11_34.References.UserReferences;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

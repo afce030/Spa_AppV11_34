@@ -10,15 +10,11 @@ import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.spa_appv11_34.Holders.HolderUsuariosSearch;
-import com.example.spa_appv11_34.Holders.UsuariosHolder;
-import com.example.spa_appv11_34.Holders.usuariosSugeridosHolder;
-import com.example.spa_appv11_34.Interaction_Classes.UsuarioDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class usersSearchAdapter extends RecyclerView.Adapter<HolderUsuariosSearch>  implements Filterable {
