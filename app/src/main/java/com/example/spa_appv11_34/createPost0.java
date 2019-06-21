@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.example.spa_appv11_34.localAdapters.imagesGalleryAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -56,7 +56,7 @@ public class createPost0 extends AppCompatActivity implements ImagePickerCallbac
 
     List<String> listOfAllImages = new ArrayList<>();
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     private ImageButton pickGallery;
@@ -107,7 +107,7 @@ public class createPost0 extends AppCompatActivity implements ImagePickerCallbac
             public void onClick(View v) {
 
                 final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-                userReferences.getAllUsers().child(userReferences.getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
+                usuarioReferences.getAllUsers().child(usuarioReferences.getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         dbSource.setResult(dataSnapshot);

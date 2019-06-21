@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -55,7 +55,7 @@ public class PersonalizarPerfil extends AppCompatActivity{
     private Uri uri;
     private boolean actualizar = false;//variable que indica si hay cambios por guardar
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
 
     private String current_user;
     private String image;
@@ -362,7 +362,7 @@ public class PersonalizarPerfil extends AppCompatActivity{
                     usuarioDatabase.setFechaNacimiento(fechaNacimiento.getText().toString());
                     usuarioDatabase.setGenero(genero.getText().toString());
 
-                    Task task = userReferences.getAllUsers().child(current_user).setValue(usuarioDatabase);
+                    Task task = usuarioReferences.getAllUsers().child(current_user).setValue(usuarioDatabase);
 
                     Task<Void> changeInfoUser = Tasks.whenAll(task);
                     changeInfoUser.addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -409,8 +409,8 @@ public class PersonalizarPerfil extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
 
-        current_user = userReferences.getUser();
-        userReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
+        current_user = usuarioReferences.getUser();
+        usuarioReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usuarioDatabase = dataSnapshot.getValue(UsuarioDatabase.class);

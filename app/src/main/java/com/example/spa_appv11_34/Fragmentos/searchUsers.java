@@ -20,7 +20,7 @@ import com.example.spa_appv11_34.Holders.UsuariosHolder;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.dateObject;
 import com.example.spa_appv11_34.R;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.example.spa_appv11_34.userPostsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -55,7 +55,7 @@ public class searchUsers extends Fragment {
     private FirebaseRecyclerAdapter adapter;
     private long likes;
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     public searchUsers() {
@@ -98,7 +98,7 @@ public class searchUsers extends Fragment {
         rvSearch = vista.findViewById(R.id.rvBuscarUsuarios);
         List<String> userKeys = new ArrayList<>();
 
-        Query query = userReferences.getAllUsers().limitToFirst(4);
+        Query query = usuarioReferences.getAllUsers().limitToFirst(4);
 
         FirebaseRecyclerOptions<UsuarioDatabase> options =
                 new FirebaseRecyclerOptions.Builder<UsuarioDatabase>()
@@ -124,7 +124,7 @@ public class searchUsers extends Fragment {
 
                 final String userKey = model.getUserKey();
 
-                userReferences.followersCounter(userKey, new UserReferences.IDcountFollowers() {
+                usuarioReferences.followersCounter(userKey, new UsuarioReferences.IDcountFollowers() {
                     @Override
                     public void followersCounter(long c, List<String> followerKeys) {
                         likes = c;
@@ -138,10 +138,10 @@ public class searchUsers extends Fragment {
 
                         dateObject date = new dateObject();
 
-                        Task task1 = userReferences.getPeopleIfollow().child(userKey).setValue(date);
+                        Task task1 = usuarioReferences.getPeopleIfollow().child(userKey).setValue(date);
 
-                        Task task2 = userReferences.getPeopleFollowingme().child(userKey)
-                                .child(userReferences.getUser()).setValue(date);
+                        Task task2 = usuarioReferences.getPeopleFollowingme().child(userKey)
+                                .child(usuarioReferences.getUser()).setValue(date);
 
                         Task<Void> tasks = Tasks.whenAll(task1,task2);
 

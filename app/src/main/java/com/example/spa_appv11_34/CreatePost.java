@@ -18,9 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.example.spa_appv11_34.localAdapters.suggestedUsersAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,7 +53,7 @@ public class CreatePost extends AppCompatActivity {
     private Task<Void> uploadPostContent;
 
     //CLASE USADA PARA OBTENER LAS REFERENCIAS DE LAS RUTAS DONDE SE SUBIRÁN O CARGARÁN LOS DATOS
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
     private String postCounter;
 
     private String current_user;
@@ -123,7 +123,7 @@ public class CreatePost extends AppCompatActivity {
                 if(lastWord.matches("@[a-zA-Z0-9_\\.]{1,15}")){
 
                     suggestions.setVisibility(View.VISIBLE);
-                    Query query = userReferences.getAllUsers().
+                    Query query = usuarioReferences.getAllUsers().
                             orderByChild("nombreUsuario").startAt(lastWord.substring(1))
                             .endAt(lastWord.substring(1)+"zzzzzzzzzzzzz").limitToFirst(20);
 
@@ -176,7 +176,7 @@ public class CreatePost extends AppCompatActivity {
                 //POR ÚLTIMO SE SUBE EL CONTENIDO DEL POST A REALTIME DATABASE EN 2 UBICACIONES DIFERENTES
 
                 //OBTENIENDO EL NOMBRE DEL USUARIO PARA INCLUIRLO EN EL postID
-                current_user = userReferences.getUser();
+                current_user = usuarioReferences.getUser();
 
                 //LAS IMÁGENES SE SUBEN USANDO LA CLASE TASKS LA CUAL ESPERA A QUE SE COMPLETEN TODAS LAS TAREAS
                 //DE IGUAL MANERA SE PROCEDE CON EL CONTENIDO DEL POST CUANDO SE SUBE A DOS UBICACIONES DIFERENTES
@@ -190,7 +190,7 @@ public class CreatePost extends AppCompatActivity {
                     final String postID = postCounter + "_" + current_user;
 
                     //CLASE UTILIZADA PARA SUBIR EL CONTENIDO DEL POST A DOS UBICACIONES DIFERENTES
-                    final UserPostDatabase userPostDatabase = new UserPostDatabase();
+                    final CentroPostDatabase centroPostDatabase = new CentroPostDatabase();
                     //LISTA CREADA PARA OBTENER LAS URL DE LAS IMÁGENES SUBIDAS
                     final List<String> imagesURL = new ArrayList<>();
                     //LISTA DE TAREAS  A COMPLETAR
@@ -203,7 +203,7 @@ public class CreatePost extends AppCompatActivity {
                         //ES NECESARIO APUNTAR AL ARCHIVO, POR ESTA RAZÓN SE CREA UN NUEVO URI
                         Uri uploadUri = Uri.fromFile(new File(image.toString()));
 
-                        UploadTask uploadTask = userReferences.getMyPostImages().child(postID)
+                        UploadTask uploadTask = usuarioReferences.getMyPostImages().child(postID)
                                 .child(uploadUri.getLastPathSegment()).putFile(uploadUri);
 
                         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -243,34 +243,34 @@ public class CreatePost extends AppCompatActivity {
                             int post_images_count = imagesURL.size();//VARIABLE QUE CUENTA EL NÚMERO DE IMÁGENES QUE SUBIÓ EL USUARIO
                             if (post_images_count == contenedor.size()) {
 
-                                userPostDatabase.setTexto(postContent.getText().toString());
-                                userPostDatabase.setUid_post(postID);
+                                centroPostDatabase.setTexto(postContent.getText().toString());
+                                centroPostDatabase.setUid_post(postID);
 
                                 String username = usuarioDatabase.getNombreUsuario();
-                                userPostDatabase.setUsuario(username);
+                                centroPostDatabase.setUsuario(username);
 
-                                userPostDatabase.setURL_Foto1(imagesURL.get(0));
+                                centroPostDatabase.setURL_Foto1(imagesURL.get(0));
 
                                 if (post_images_count > 1) {
-                                    userPostDatabase.setURL_Foto2(imagesURL.get(1));
+                                    centroPostDatabase.setURL_Foto2(imagesURL.get(1));
                                 } else {
-                                    userPostDatabase.setURL_Foto2("NoPhoto");
+                                    centroPostDatabase.setURL_Foto2("NoPhoto");
                                 }
 
                                 if (post_images_count > 2) {
-                                    userPostDatabase.setURL_Foto3(imagesURL.get(2));
+                                    centroPostDatabase.setURL_Foto3(imagesURL.get(2));
                                 } else {
-                                    userPostDatabase.setURL_Foto3("NoPhoto");
+                                    centroPostDatabase.setURL_Foto3("NoPhoto");
                                 }
 
                                 if (post_images_count > 3) {
-                                    userPostDatabase.setURL_Foto4(imagesURL.get(3));
+                                    centroPostDatabase.setURL_Foto4(imagesURL.get(3));
                                 } else {
-                                    userPostDatabase.setURL_Foto4("NoPhoto");
+                                    centroPostDatabase.setURL_Foto4("NoPhoto");
                                 }
 
-                                Task task1 = userReferences.getPostList().child(postID).setValue(userPostDatabase);
-                                Task task2 = userReferences.getMyPost().child(postID).setValue(userPostDatabase);
+                                Task task1 = usuarioReferences.getPostList().child(postID).setValue(centroPostDatabase);
+                                Task task2 = usuarioReferences.getMyPost().child(postID).setValue(centroPostDatabase);
 
                                 uploadPostContent = Tasks.whenAll(task1, task2);
 
@@ -316,15 +316,15 @@ public class CreatePost extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //INTERFAZ USADA PARA OBTENER CUANTOS POST TIENE EL USUARIO
-        userReferences.myPostCounter(new UserReferences.IDcountMyPost() {
+        usuarioReferences.myPostCounter(new UsuarioReferences.IDcountMyPost() {
             @Override
             public void myPostCounter(long c) {
                 postCounter = String.valueOf(c);
             }
         });
 
-        current_user = userReferences.getUser();
-        userReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
+        current_user = usuarioReferences.getUser();
+        usuarioReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usuarioDatabase = dataSnapshot.getValue(UsuarioDatabase.class);

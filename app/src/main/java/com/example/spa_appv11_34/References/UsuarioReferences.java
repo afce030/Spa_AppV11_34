@@ -14,7 +14,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserReferences {
+public class UsuarioReferences {
 
     public interface IDcountLikes {
         public void likesCounter(long c, List<String> Keys);
@@ -32,7 +32,7 @@ public class UserReferences {
         public void myPostCounter(long c);
     }
 
-    private static UserReferences userReferences = null;
+    private static UsuarioReferences usuarioReferences = null;
 
     private FirebaseDatabase firebaseDatabase;
 
@@ -56,7 +56,7 @@ public class UserReferences {
 
     private String user;
 
-    public UserReferences() {
+    public UsuarioReferences() {
 
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -85,11 +85,11 @@ public class UserReferences {
 
     }
 
-    synchronized public static UserReferences getInstance() {
-        if (userReferences == null) {
-            userReferences = new UserReferences();
+    synchronized public static UsuarioReferences getInstance() {
+        if (usuarioReferences == null) {
+            usuarioReferences = new UsuarioReferences();
         }
-        return userReferences;
+        return usuarioReferences;
     }
 
     public String getUser() {

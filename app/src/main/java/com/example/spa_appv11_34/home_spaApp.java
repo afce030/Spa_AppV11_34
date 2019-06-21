@@ -9,7 +9,7 @@ import com.example.spa_appv11_34.Fragmentos.HomeFragment;
 import com.example.spa_appv11_34.Fragmentos.NotificationFragment;
 import com.example.spa_appv11_34.Fragmentos.SearchFragment;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +35,7 @@ public class home_spaApp extends AppCompatActivity implements HomeFragment.OnFra
     private FirebaseAuth firebaseAuth;
     private String current_user;
     private UsuarioDatabase usuarioDatabase;
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -128,8 +128,8 @@ public class home_spaApp extends AppCompatActivity implements HomeFragment.OnFra
     protected void onStart() {
         super.onStart();
 
-        current_user = userReferences.getUser();
-        userReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
+        current_user = usuarioReferences.getUser();
+        usuarioReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usuarioDatabase = dataSnapshot.getValue(UsuarioDatabase.class);

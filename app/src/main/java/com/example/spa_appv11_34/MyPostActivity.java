@@ -22,10 +22,10 @@ import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Holders.PostHolder;
-import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,7 +58,7 @@ public class MyPostActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private RecyclerView rvSearch;
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
     private UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
 
@@ -121,9 +121,9 @@ public class MyPostActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Clave del usuario que quiere seguir a otro
-        final String current_user = userReferences.getUser();
+        final String current_user = usuarioReferences.getUser();
 
-        userReferences.followersCounter(current_user,new UserReferences.IDcountFollowers() {
+        usuarioReferences.followersCounter(current_user,new UsuarioReferences.IDcountFollowers() {
             @Override
             public void followersCounter(long c, List<String> followerKeys) {
                 followersCounter.setText(String.valueOf(c));
@@ -180,7 +180,7 @@ public class MyPostActivity extends AppCompatActivity {
 
                 final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
 
-                userReferences.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
+                usuarioReferences.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
@@ -229,7 +229,7 @@ public class MyPostActivity extends AppCompatActivity {
 
                 final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
 
-                userReferences.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
+                usuarioReferences.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
@@ -284,14 +284,14 @@ public class MyPostActivity extends AppCompatActivity {
 
         List<String> userKeys = new ArrayList<>();
 
-        Query query = userReferences.getPostList().limitToLast(2);
+        Query query = usuarioReferences.getPostList().limitToLast(2);
 
-        FirebaseRecyclerOptions<UserPostDatabase> options =
-                new FirebaseRecyclerOptions.Builder<UserPostDatabase>()
-                        .setQuery(query, UserPostDatabase.class)
+        FirebaseRecyclerOptions<CentroPostDatabase> options =
+                new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
+                        .setQuery(query, CentroPostDatabase.class)
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<UserPostDatabase, PostHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<CentroPostDatabase, PostHolder>(options) {
 
             @NonNull
             @Override
@@ -303,7 +303,7 @@ public class MyPostActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final PostHolder holder, int i, @NonNull final UserPostDatabase model) {
+            protected void onBindViewHolder(@NonNull final PostHolder holder, int i, @NonNull final CentroPostDatabase model) {
 
                 holder.getUserNamePost().setText(model.getUsuario());
 
@@ -314,7 +314,7 @@ public class MyPostActivity extends AppCompatActivity {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                userReferences.postLikesCounter(userKey, key_post, new UserReferences.IDcountLikes() {
+                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -387,7 +387,7 @@ public class MyPostActivity extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        userReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

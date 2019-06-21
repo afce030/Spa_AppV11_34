@@ -2,35 +2,21 @@ package com.example.spa_appv11_34;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraX;
-import androidx.camera.core.CaptureProcessor;
 import androidx.camera.core.FlashMode;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageAnalysisConfig;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureConfig;
-import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Size;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
@@ -39,9 +25,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.example.spa_appv11_34.localAdapters.galleryAdapterSimple;
-import com.example.spa_appv11_34.localAdapters.imagesGalleryAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -55,7 +40,6 @@ import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -81,7 +65,7 @@ public class SubirFotoActivity extends AppCompatActivity implements ImagePickerC
     private ConstraintLayout constraintLayout;
     private List<Button> buttons = new ArrayList<>();
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
 
     private boolean activated = false;
     private String pickerPath;
@@ -249,7 +233,7 @@ public class SubirFotoActivity extends AppCompatActivity implements ImagePickerC
                     Uri uploadUri = Uri.fromFile(new File(uri.toString()));
 
                     Task<Void> uploadImage;
-                    UploadTask uploadTask = userReferences.getMyProfileImages().child("myUserPhotos").child(ServerValue.TIMESTAMP.toString()).putFile(uploadUri);
+                    UploadTask uploadTask = usuarioReferences.getMyProfileImages().child("myUserPhotos").child(ServerValue.TIMESTAMP.toString()).putFile(uploadUri);
 
                     final String[] sdownload_url = new String[1];
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -270,8 +254,8 @@ public class SubirFotoActivity extends AppCompatActivity implements ImagePickerC
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            String user = userReferences.getUser();
-                            Task task = userReferences.getAllUsers().child(user).child("URL_Foto").setValue(sdownload_url[0]);
+                            String user = usuarioReferences.getUser();
+                            Task task = usuarioReferences.getAllUsers().child(user).child("URL_Foto").setValue(sdownload_url[0]);
 
                             Task<Void> uploadPostContent;
                             uploadPostContent = Tasks.whenAll(task);

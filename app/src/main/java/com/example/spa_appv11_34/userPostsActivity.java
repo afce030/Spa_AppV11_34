@@ -21,10 +21,10 @@ import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Holders.PostHolder;
-import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.dateObject;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,7 +62,7 @@ public class userPostsActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private RecyclerView rvSearch;
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     private long likes = 0;
@@ -131,9 +131,9 @@ public class userPostsActivity extends AppCompatActivity {
         final String fotoURL_obt = intent.getStringExtra("foto");
 
         //Clave del usuario que quiere seguir a otro
-        final String current_user = userReferences.getUser();
+        final String current_user = usuarioReferences.getUser();
 
-        userReferences.followersCounter(userKey_obt, new UserReferences.IDcountFollowers() {
+        usuarioReferences.followersCounter(userKey_obt, new UsuarioReferences.IDcountFollowers() {
             @Override
             public void followersCounter(long c, List<String> followerKeys) {
                 followersCounter.setText(String.valueOf(c));
@@ -185,12 +185,12 @@ public class userPostsActivity extends AppCompatActivity {
 
         Query query = FirebaseDatabase.getInstance().getReference().child("MyPosts").child(userKey_obt).limitToLast(20);
 
-        FirebaseRecyclerOptions<UserPostDatabase> options =
-                new FirebaseRecyclerOptions.Builder<UserPostDatabase>()
-                        .setQuery(query, UserPostDatabase.class)
+        FirebaseRecyclerOptions<CentroPostDatabase> options =
+                new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
+                        .setQuery(query, CentroPostDatabase.class)
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<UserPostDatabase, PostHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<CentroPostDatabase, PostHolder>(options) {
 
             @NonNull
             @Override
@@ -201,7 +201,7 @@ public class userPostsActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final PostHolder holder, int i, @NonNull final UserPostDatabase model) {
+            protected void onBindViewHolder(@NonNull final PostHolder holder, int i, @NonNull final CentroPostDatabase model) {
 
                 holder.getUserNamePost().setText(model.getUsuario());
 
@@ -212,7 +212,7 @@ public class userPostsActivity extends AppCompatActivity {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                userReferences.postLikesCounter(userKey, key_post, new UserReferences.IDcountLikes() {
+                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -267,13 +267,13 @@ public class userPostsActivity extends AppCompatActivity {
 
                                             dateObject date = new dateObject();
 
-                                            Task task1 = userReferences.getLikesAnyPost()
+                                            Task task1 = usuarioReferences.getLikesAnyPost()
                                                     .child(userKey_obt)
                                                     .child(model.getUid_post())
-                                                    .child(userReferences.getUser())
+                                                    .child(usuarioReferences.getUser())
                                                     .setValue(date);
 
-                                            Task task2 = userReferences.getMyFavs().child(model.getUid_post()).setValue(model);
+                                            Task task2 = usuarioReferences.getMyFavs().child(model.getUid_post()).setValue(model);
 
                                             Task<Void> upload = Tasks.whenAll(task1,task2);
 
@@ -312,7 +312,7 @@ public class userPostsActivity extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        userReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

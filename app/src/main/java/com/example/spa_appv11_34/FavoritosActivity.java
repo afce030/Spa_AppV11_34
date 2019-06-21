@@ -19,9 +19,9 @@ import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Holders.miniPostHolder;
-import com.example.spa_appv11_34.Clases_Interaccion.UserPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UserReferences;
+import com.example.spa_appv11_34.References.UsuarioReferences;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,7 +45,7 @@ public class FavoritosActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private long likes;
 
-    private UserReferences userReferences = UserReferences.getInstance();
+    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -88,14 +88,14 @@ public class FavoritosActivity extends AppCompatActivity {
         rvSearch = findViewById(R.id.rvSearchPostFavs);
         List<String> userKeys = new ArrayList<>();
 
-        Query query = userReferences.getMyFavs().limitToLast(4);
+        Query query = usuarioReferences.getMyFavs().limitToLast(4);
 
-        FirebaseRecyclerOptions<UserPostDatabase> options =
-                new FirebaseRecyclerOptions.Builder<UserPostDatabase>()
-                        .setQuery(query, UserPostDatabase.class)
+        FirebaseRecyclerOptions<CentroPostDatabase> options =
+                new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
+                        .setQuery(query, CentroPostDatabase.class)
                         .build();
 
-        adapter = new FirebaseRecyclerAdapter<UserPostDatabase, miniPostHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<CentroPostDatabase, miniPostHolder>(options) {
 
             @NonNull
             @Override
@@ -107,7 +107,7 @@ public class FavoritosActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final miniPostHolder holder, int i, @NonNull final UserPostDatabase model) {
+            protected void onBindViewHolder(@NonNull final miniPostHolder holder, int i, @NonNull final CentroPostDatabase model) {
 
                 holder.getUserNamePost().setText(model.getUsuario());
 
@@ -117,7 +117,7 @@ public class FavoritosActivity extends AppCompatActivity {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                userReferences.postLikesCounter(userKey, key_post, new UserReferences.IDcountLikes() {
+                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -211,7 +211,7 @@ public class FavoritosActivity extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        userReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

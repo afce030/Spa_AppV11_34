@@ -2,7 +2,7 @@ package com.example.spa_appv11_34.Clases_Interaccion;
 
 import com.google.firebase.database.ServerValue;
 
-public class UserPostDatabase {
+public class CentroPostDatabase {
 
     private String usuario;
     private String texto;
@@ -13,7 +13,7 @@ public class UserPostDatabase {
     private String Uid_post;
     private Object createdTimestamp;
 
-    public UserPostDatabase() {
+    public CentroPostDatabase() {
         createdTimestamp = ServerValue.TIMESTAMP;
     }
 
