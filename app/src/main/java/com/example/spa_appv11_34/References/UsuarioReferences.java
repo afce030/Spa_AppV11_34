@@ -72,7 +72,7 @@ public class UsuarioReferences {
         myProfileImages = firebaseStorage.getReference().child(user).child("myProfileImages");
 
         myFavs = firebaseDatabase.getReference().child("MyFavs").child(user);
-        myPreferences = firebaseDatabase.getReference().child("Preferencias").child(user);
+        myPreferences = firebaseDatabase.getReference().child("Preferencias_Usuario").child(user);
 
         myPost = firebaseDatabase.getReference().child("MyPosts").child(user);
         postList = firebaseDatabase.getReference("PostList");
