@@ -82,7 +82,7 @@ public class FavoritosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritos);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation4);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bnvFavoritosActivity);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         rvSearch = findViewById(R.id.rvSearchPostFavs);

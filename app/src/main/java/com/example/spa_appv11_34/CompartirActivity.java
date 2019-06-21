@@ -52,7 +52,7 @@ public class CompartirActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compartir);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation6);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bnvCompartirActivity);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }

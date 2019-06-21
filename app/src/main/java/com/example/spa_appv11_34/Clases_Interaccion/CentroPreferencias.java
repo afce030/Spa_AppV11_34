@@ -2,7 +2,7 @@ package com.example.spa_appv11_34.Clases_Interaccion;
 
 public class CentroPreferencias {
 
-    //PReferencias adicionales
+    //Preferencias adicionales
 
     //Configuration preferences
     private String theme;

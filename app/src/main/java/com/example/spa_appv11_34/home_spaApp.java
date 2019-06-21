@@ -94,7 +94,7 @@ public class home_spaApp extends AppCompatActivity implements HomeFragment.OnFra
             }
         });
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bnvHomeActivity);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Intent intencion = getIntent();

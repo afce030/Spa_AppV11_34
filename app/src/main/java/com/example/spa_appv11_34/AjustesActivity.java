@@ -65,7 +65,7 @@ public class AjustesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation5);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bnvAjustesActivity);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         spanish = findViewById(R.id.swSPanish);
