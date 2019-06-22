@@ -6,11 +6,11 @@ public class CentroPreferencias {
 
     //Configuration preferences
     private String theme;
-    private String language;
-    private Boolean notifications;
+    private String idioma;
+    private Boolean notificaciones;
     //Payment
-    private Boolean creditCard;
-    private Boolean payPal;
+    private Boolean recibirCreditCard;
+    private Boolean recibirPayPal;
 
     public CentroPreferencias() {
     }
@@ -23,35 +23,35 @@ public class CentroPreferencias {
         this.theme = theme;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getIdioma() {
+        return idioma;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
 
-    public Boolean getNotifications() {
-        return notifications;
+    public Boolean getNotificaciones() {
+        return notificaciones;
     }
 
-    public void setNotifications(Boolean notifications) {
-        this.notifications = notifications;
+    public void setNotificaciones(Boolean notificaciones) {
+        this.notificaciones = notificaciones;
     }
 
-    public Boolean getCreditCard() {
-        return creditCard;
+    public Boolean getRecibirCreditCard() {
+        return recibirCreditCard;
     }
 
-    public void setCreditCard(Boolean creditCard) {
-        this.creditCard = creditCard;
+    public void setRecibirCreditCard(Boolean recibirCreditCard) {
+        this.recibirCreditCard = recibirCreditCard;
     }
 
-    public Boolean getPayPal() {
-        return payPal;
+    public Boolean getRecibirPayPal() {
+        return recibirPayPal;
     }
 
-    public void setPayPal(Boolean payPal) {
-        this.payPal = payPal;
+    public void setRecibirPayPal(Boolean recibirPayPal) {
+        this.recibirPayPal = recibirPayPal;
     }
 }

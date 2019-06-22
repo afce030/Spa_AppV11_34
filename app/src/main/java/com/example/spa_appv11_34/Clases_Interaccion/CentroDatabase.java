@@ -8,6 +8,7 @@ public class CentroDatabase {
     private String URL_Foto;
 
     private String llaveCentro;
+    private String llaveUsuario;
 
     private int calificacion;
 
@@ -52,6 +53,14 @@ public class CentroDatabase {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public String getLlaveUsuario() {
+        return llaveUsuario;
+    }
+
+    public void setLlaveUsuario(String llaveUsuario) {
+        this.llaveUsuario = llaveUsuario;
     }
 
     public String getLlaveCentro() {

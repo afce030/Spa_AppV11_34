@@ -11,6 +11,7 @@ public class CentroPostDatabase {
     private String URL_Foto3;
     private String URL_Foto4;
     private String Uid_post;
+    private String tags;
     private Object createdTimestamp;
 
     public CentroPostDatabase() {
@@ -71,6 +72,14 @@ public class CentroPostDatabase {
 
     public void setUid_post(String uid_post) {
         Uid_post = uid_post;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public Object getCreatedTimestamp() {

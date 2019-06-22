@@ -198,8 +198,8 @@ public class MyPostActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UsuarioPreferences user) {
                         usuarioPreferences.setTheme(user.getTheme());
-                        usuarioPreferences.setNotifications(user.getNotifications());
-                        usuarioPreferences.setLanguage(user.getLanguage());
+                        usuarioPreferences.setNotificaciones(user.getNotificaciones());
+                        usuarioPreferences.setIdioma(user.getIdioma());
                         usuarioPreferences.setCreditCard(user.getCreditCard());
                         usuarioPreferences.setPayPal(user.getPayPal());
 
@@ -247,15 +247,15 @@ public class MyPostActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UsuarioPreferences user) {
                         usuarioPreferences.setTheme(user.getTheme());
-                        usuarioPreferences.setNotifications(user.getNotifications());
-                        usuarioPreferences.setLanguage(user.getLanguage());
+                        usuarioPreferences.setNotificaciones(user.getNotificaciones());
+                        usuarioPreferences.setIdioma(user.getIdioma());
                         usuarioPreferences.setCreditCard(user.getCreditCard());
                         usuarioPreferences.setPayPal(user.getPayPal());
 
                         Intent intencion = new Intent(MyPostActivity.this,AjustesActivity.class);
                         intencion.putExtra("tema",usuarioPreferences.getTheme());
-                        intencion.putExtra("idioma",usuarioPreferences.getLanguage());
-                        intencion.putExtra("notificaciones",usuarioPreferences.getNotifications());
+                        intencion.putExtra("idioma",usuarioPreferences.getIdioma());
+                        intencion.putExtra("notificaciones",usuarioPreferences.getNotificaciones());
                         startActivity(intencion);
                     }
                 });

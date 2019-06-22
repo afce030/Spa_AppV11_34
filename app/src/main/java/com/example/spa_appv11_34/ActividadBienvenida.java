@@ -78,14 +78,14 @@ public class ActividadBienvenida extends AppCompatActivity {
                                     usuarioDatabase.setFechaNacimiento("01/01/2001");
                                     usuarioDatabase.setGenero("No especifica");
                                     usuarioDatabase.setCelular("No especificado");
-                                    usuarioDatabase.setUserKey(currentUser.getUid());
+                                    usuarioDatabase.setLlaveUsuario(currentUser.getUid());
 
                                     Task task1 = databaseReference1.setValue(usuarioDatabase);
 
                                     databaseReference2 = firebaseDatabase.getReference("Preferencias/" + currentUser.getUid());
                                     UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
-                                    usuarioPreferences.setLanguage("Español");
-                                    usuarioPreferences.setNotifications(true);
+                                    usuarioPreferences.setIdioma("Español");
+                                    usuarioPreferences.setNotificaciones(true);
                                     usuarioPreferences.setTheme("Claro");
                                     usuarioPreferences.setCreditCard(false);
                                     usuarioPreferences.setPayPal(false);

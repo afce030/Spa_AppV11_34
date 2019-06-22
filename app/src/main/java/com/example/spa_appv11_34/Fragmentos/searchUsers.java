@@ -122,7 +122,7 @@ public class searchUsers extends Fragment {
                 Glide.with(getActivity()).load(model.getURL_Foto()).into(holder.getFotoPerfilBuscador());
                 holder.getUsername().setText(model.getNombreUsuario());
 
-                final String userKey = model.getUserKey();
+                final String userKey = model.getLlaveUsuario();
 
                 usuarioReferences.followersCounter(userKey, new UsuarioReferences.IDcountFollowers() {
                     @Override

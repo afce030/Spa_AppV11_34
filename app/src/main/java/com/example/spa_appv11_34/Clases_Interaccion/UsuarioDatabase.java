@@ -11,7 +11,7 @@ public class UsuarioDatabase {
     private String fechaNacimiento;
     private String Genero;
     private String celular;
-    private String userKey;
+    private String llaveUsuario;
 
     public UsuarioDatabase() {
     }
@@ -88,11 +88,11 @@ public class UsuarioDatabase {
         this.celular = celular;
     }
 
-    public String getUserKey() {
-        return userKey;
+    public String getLlaveUsuario() {
+        return llaveUsuario;
     }
 
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
+    public void setLlaveUsuario(String llaveUsuario) {
+        this.llaveUsuario = llaveUsuario;
     }
 }

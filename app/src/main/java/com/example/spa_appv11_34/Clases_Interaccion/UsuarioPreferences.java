@@ -4,8 +4,8 @@ public class UsuarioPreferences {
 
     //Configuration preferences
     private String theme;
-    private String language;
-    private Boolean notifications;
+    private String idioma;
+    private Boolean notificaciones;
     //Payment
     private Boolean creditCard;
     private Boolean payPal;
@@ -22,20 +22,20 @@ public class UsuarioPreferences {
         this.theme = theme;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getIdioma() {
+        return idioma;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
     }
 
-    public Boolean getNotifications() {
-        return notifications;
+    public Boolean getNotificaciones() {
+        return notificaciones;
     }
 
-    public void setNotifications(Boolean notifications) {
-        this.notifications = notifications;
+    public void setNotificaciones(Boolean notificaciones) {
+        this.notificaciones = notificaciones;
     }
 
     public Boolean getCreditCard() {
