@@ -9,7 +9,7 @@ import com.example.spa_appv11_34.Fragmentos.HomeFragment;
 import com.example.spa_appv11_34.Fragmentos.NotificationFragment;
 import com.example.spa_appv11_34.Fragmentos.SearchFragment;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

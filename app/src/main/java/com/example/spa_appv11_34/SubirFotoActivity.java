@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.spa_appv11_34.References.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferences;
 import com.example.spa_appv11_34.localAdapters.galleryAdapterSimple;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

@@ -25,7 +25,7 @@ import com.example.spa_appv11_34.Holders.PostHolder;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
-import com.example.spa_appv11_34.References.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferences;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;

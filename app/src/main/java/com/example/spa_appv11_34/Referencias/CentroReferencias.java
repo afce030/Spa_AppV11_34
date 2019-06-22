@@ -1,4 +1,4 @@
-package com.example.spa_appv11_34.References;
+package com.example.spa_appv11_34.Referencias;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;

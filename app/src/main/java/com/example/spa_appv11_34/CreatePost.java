@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.References.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferences;
 import com.example.spa_appv11_34.localAdapters.suggestedUsersAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

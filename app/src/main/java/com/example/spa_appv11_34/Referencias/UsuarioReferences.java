@@ -1,4 +1,4 @@
-package com.example.spa_appv11_34.References;
+package com.example.spa_appv11_34.Referencias;
 
 import androidx.annotation.NonNull;
 
@@ -16,43 +16,30 @@ import java.util.List;
 
 public class UsuarioReferences {
 
-    public interface IDcountLikes {
-        public void likesCounter(long c, List<String> Keys);
-    }
-
-    public interface IDcountFollowers {
-        public void followersCounter(long c, List<String> followerKeys);
-    }
-
     public interface IDcountFollowing {
         public void followingCounter(long c, List<String> followingKeys);
     }
 
-    public interface IDcountMyPost {
-        public void myPostCounter(long c);
+    public interface IDcountLikes {
+        public void likesCounter(long c, List<String> Keys);
     }
 
     private static UsuarioReferences usuarioReferences = null;
 
     private FirebaseDatabase firebaseDatabase;
 
-    private DatabaseReference myLikes;
     private DatabaseReference likesAnyPost;
 
     private DatabaseReference myFavs;
     private DatabaseReference myPreferences;
 
-    private DatabaseReference myPost;
     private DatabaseReference postList;
 
     private DatabaseReference allUsers;
     private DatabaseReference peopleIfollow;
-    private DatabaseReference peopleFollowingme;
 
     private FirebaseStorage firebaseStorage;
-    private StorageReference myPostImages;
     private StorageReference myProfileImages;
-
 
     private String user;
 
@@ -66,22 +53,16 @@ public class UsuarioReferences {
         //Activando persistencia
         //firebaseDatabase.setPersistenceEnabled(true);
 
-        myLikes = firebaseDatabase.getReference().child("Mylikes").child(user);
         likesAnyPost = firebaseDatabase.getReference().child("Mylikes");
-        myPostImages = firebaseStorage.getReference().child(user).child("myPosts");
         myProfileImages = firebaseStorage.getReference().child(user).child("myProfileImages");
 
         myFavs = firebaseDatabase.getReference().child("MyFavs").child(user);
         myPreferences = firebaseDatabase.getReference().child("Preferencias_Usuario").child(user);
 
-        myPost = firebaseDatabase.getReference().child("MyPosts").child(user);
         postList = firebaseDatabase.getReference("PostList");
 
         allUsers = firebaseDatabase.getReference().child("Usuarios");
         peopleIfollow = firebaseDatabase.getReference().child("Following").child(user);
-
-        peopleFollowingme = firebaseDatabase.getReference()
-                .child("Followers");//No se añade user como hijo debido a que esta referencia apunta a otro usuario
 
     }
 
@@ -100,22 +81,6 @@ public class UsuarioReferences {
         this.user = user;
     }
 
-    public DatabaseReference getMyPost() {
-        return myPost;
-    }
-
-    public void setMyPost(DatabaseReference myPost) {
-        this.myPost = myPost;
-    }
-
-    public StorageReference getMyPostImages() {
-        return myPostImages;
-    }
-
-    public void setMyPostImages(StorageReference myPostImages) {
-        this.myPostImages = myPostImages;
-    }
-
     public DatabaseReference getPostList() {
         return postList;
     }
@@ -132,10 +97,6 @@ public class UsuarioReferences {
         this.allUsers = allUsers;
     }
 
-    public DatabaseReference getMyLikes() {
-        return myLikes;
-    }
-
     public DatabaseReference getLikesAnyPost() {
         return likesAnyPost;
     }
@@ -150,10 +111,6 @@ public class UsuarioReferences {
 
     public DatabaseReference getPeopleIfollow() {
         return peopleIfollow;
-    }
-
-    public DatabaseReference getPeopleFollowingme() {
-        return peopleFollowingme;
     }
 
     public StorageReference getMyProfileImages() {
@@ -192,59 +149,6 @@ public class UsuarioReferences {
 
     }
 
-    public void userLikesCounter(final IDcountLikes iDcountLikes) {
-
-        myLikes.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                long likes = 0;
-                List<String> h = new ArrayList<>();
-
-                for (DataSnapshot child_i : dataSnapshot.getChildren()) {
-                    likes = likes + child_i.getChildrenCount();
-                    h.add(child_i.getKey());
-                }
-
-                iDcountLikes.likesCounter(likes, h);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-    public void followersCounter(String userkey, final IDcountFollowers iDcountFollowers) {
-
-        peopleFollowingme.child(userkey).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                long followers = 0;
-                List<String> h = new ArrayList<>();
-
-                if(dataSnapshot.getChildrenCount() > 0) {
-                    for (DataSnapshot child_i : dataSnapshot.getChildren()) {
-                        followers = followers + 1;
-                        h.add(child_i.getKey());
-                    }
-                }
-
-                iDcountFollowers.followersCounter(followers, h);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
     public void followingCounter(final IDcountFollowing iDcountFollowing) {
 
         peopleIfollow.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -267,27 +171,6 @@ public class UsuarioReferences {
             }
         });
 
-    }
-
-    public void myPostCounter(final IDcountMyPost iDcountMyPost) {
-
-        myPost.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                long c = 0;
-                for(DataSnapshot child: dataSnapshot.getChildren()){
-                    c += 1;
-                }
-                iDcountMyPost.myPostCounter(c);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
 }
