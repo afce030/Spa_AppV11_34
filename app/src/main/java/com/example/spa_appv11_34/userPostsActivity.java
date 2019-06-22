@@ -24,7 +24,7 @@ import com.example.spa_appv11_34.Holders.PostHolder;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.dateObject;
-import com.example.spa_appv11_34.Referencias.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,7 +62,7 @@ public class userPostsActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private RecyclerView rvSearch;
 
-    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
+    private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     private long likes = 0;
@@ -131,9 +131,9 @@ public class userPostsActivity extends AppCompatActivity {
         final String fotoURL_obt = intent.getStringExtra("foto");
 
         //Clave del usuario que quiere seguir a otro
-        final String current_user = usuarioReferences.getUser();
+        final String current_user = usuarioReferencias.getUser();
 
-        usuarioReferences.followersCounter(userKey_obt, new UsuarioReferences.IDcountFollowers() {
+        usuarioReferencias.followersCounter(userKey_obt, new UsuarioReferencias.IDcountFollowers() {
             @Override
             public void followersCounter(long c, List<String> followerKeys) {
                 followersCounter.setText(String.valueOf(c));
@@ -212,7 +212,7 @@ public class userPostsActivity extends AppCompatActivity {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
+                usuarioReferencias.postLikesCounter(userKey, key_post, new UsuarioReferencias.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -267,13 +267,13 @@ public class userPostsActivity extends AppCompatActivity {
 
                                             dateObject date = new dateObject();
 
-                                            Task task1 = usuarioReferences.getLikesAnyPost()
+                                            Task task1 = usuarioReferencias.getLikesAnyPost()
                                                     .child(userKey_obt)
                                                     .child(model.getUid_post())
-                                                    .child(usuarioReferences.getUser())
+                                                    .child(usuarioReferencias.getUser())
                                                     .setValue(date);
 
-                                            Task task2 = usuarioReferences.getMyFavs().child(model.getUid_post()).setValue(model);
+                                            Task task2 = usuarioReferencias.getMyFavs().child(model.getUid_post()).setValue(model);
 
                                             Task<Void> upload = Tasks.whenAll(task1,task2);
 
@@ -312,7 +312,7 @@ public class userPostsActivity extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferencias.getAllCenters().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

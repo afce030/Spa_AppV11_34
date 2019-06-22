@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.spa_appv11_34.Referencias.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.example.spa_appv11_34.localAdapters.galleryAdapterSimple;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -65,7 +65,7 @@ public class SubirFotoActivity extends AppCompatActivity implements ImagePickerC
     private ConstraintLayout constraintLayout;
     private List<Button> buttons = new ArrayList<>();
 
-    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
+    private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
 
     private boolean activated = false;
     private String pickerPath;
@@ -233,7 +233,7 @@ public class SubirFotoActivity extends AppCompatActivity implements ImagePickerC
                     Uri uploadUri = Uri.fromFile(new File(uri.toString()));
 
                     Task<Void> uploadImage;
-                    UploadTask uploadTask = usuarioReferences.getMyProfileImages().child("myUserPhotos").child(ServerValue.TIMESTAMP.toString()).putFile(uploadUri);
+                    UploadTask uploadTask = usuarioReferencias.getMyProfileImages().child("myUserPhotos").child(ServerValue.TIMESTAMP.toString()).putFile(uploadUri);
 
                     final String[] sdownload_url = new String[1];
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -254,8 +254,8 @@ public class SubirFotoActivity extends AppCompatActivity implements ImagePickerC
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            String user = usuarioReferences.getUser();
-                            Task task = usuarioReferences.getAllUsers().child(user).child("URL_Foto").setValue(sdownload_url[0]);
+                            String user = usuarioReferencias.getUser();
+                            Task task = usuarioReferencias.getAllCenters().child(user).child("URL_Foto").setValue(sdownload_url[0]);
 
                             Task<Void> uploadPostContent;
                             uploadPostContent = Tasks.whenAll(task);

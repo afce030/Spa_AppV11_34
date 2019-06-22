@@ -25,7 +25,7 @@ import com.example.spa_appv11_34.Holders.PostHolder;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
-import com.example.spa_appv11_34.Referencias.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,7 +58,7 @@ public class MyPostActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private RecyclerView rvSearch;
 
-    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
+    private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
     private UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
 
@@ -121,9 +121,9 @@ public class MyPostActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Clave del usuario que quiere seguir a otro
-        final String current_user = usuarioReferences.getUser();
+        final String current_user = usuarioReferencias.getUser();
 
-        usuarioReferences.followersCounter(current_user,new UsuarioReferences.IDcountFollowers() {
+        usuarioReferencias.followersCounter(current_user,new UsuarioReferencias.IDcountFollowers() {
             @Override
             public void followersCounter(long c, List<String> followerKeys) {
                 followersCounter.setText(String.valueOf(c));
@@ -180,7 +180,7 @@ public class MyPostActivity extends AppCompatActivity {
 
                 final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
 
-                usuarioReferences.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
+                usuarioReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
@@ -229,7 +229,7 @@ public class MyPostActivity extends AppCompatActivity {
 
                 final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
 
-                usuarioReferences.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
+                usuarioReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
@@ -284,7 +284,7 @@ public class MyPostActivity extends AppCompatActivity {
 
         List<String> userKeys = new ArrayList<>();
 
-        Query query = usuarioReferences.getPostList().limitToLast(2);
+        Query query = usuarioReferencias.getPostList().limitToLast(2);
 
         FirebaseRecyclerOptions<CentroPostDatabase> options =
                 new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
@@ -314,7 +314,7 @@ public class MyPostActivity extends AppCompatActivity {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
+                usuarioReferencias.postLikesCounter(userKey, key_post, new UsuarioReferencias.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -387,7 +387,7 @@ public class MyPostActivity extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferencias.getAllCenters().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

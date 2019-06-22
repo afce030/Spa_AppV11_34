@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.Referencias.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.example.spa_appv11_34.localAdapters.suggestedUsersAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,7 +53,7 @@ public class CreatePost extends AppCompatActivity {
     private Task<Void> uploadPostContent;
 
     //CLASE USADA PARA OBTENER LAS REFERENCIAS DE LAS RUTAS DONDE SE SUBIRÁN O CARGARÁN LOS DATOS
-    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
+    private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private String postCounter;
 
     private String current_user;
@@ -123,7 +123,7 @@ public class CreatePost extends AppCompatActivity {
                 if(lastWord.matches("@[a-zA-Z0-9_\\.]{1,15}")){
 
                     suggestions.setVisibility(View.VISIBLE);
-                    Query query = usuarioReferences.getAllUsers().
+                    Query query = usuarioReferencias.getAllCenters().
                             orderByChild("nombreUsuario").startAt(lastWord.substring(1))
                             .endAt(lastWord.substring(1)+"zzzzzzzzzzzzz").limitToFirst(20);
 
@@ -176,7 +176,7 @@ public class CreatePost extends AppCompatActivity {
                 //POR ÚLTIMO SE SUBE EL CONTENIDO DEL POST A REALTIME DATABASE EN 2 UBICACIONES DIFERENTES
 
                 //OBTENIENDO EL NOMBRE DEL USUARIO PARA INCLUIRLO EN EL postID
-                current_user = usuarioReferences.getUser();
+                current_user = usuarioReferencias.getUser();
 
                 //LAS IMÁGENES SE SUBEN USANDO LA CLASE TASKS LA CUAL ESPERA A QUE SE COMPLETEN TODAS LAS TAREAS
                 //DE IGUAL MANERA SE PROCEDE CON EL CONTENIDO DEL POST CUANDO SE SUBE A DOS UBICACIONES DIFERENTES
@@ -203,7 +203,7 @@ public class CreatePost extends AppCompatActivity {
                         //ES NECESARIO APUNTAR AL ARCHIVO, POR ESTA RAZÓN SE CREA UN NUEVO URI
                         Uri uploadUri = Uri.fromFile(new File(image.toString()));
 
-                        UploadTask uploadTask = usuarioReferences.getMyPostImages().child(postID)
+                        UploadTask uploadTask = usuarioReferencias.getMyPostImages().child(postID)
                                 .child(uploadUri.getLastPathSegment()).putFile(uploadUri);
 
                         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -269,8 +269,8 @@ public class CreatePost extends AppCompatActivity {
                                     centroPostDatabase.setURL_Foto4("NoPhoto");
                                 }
 
-                                Task task1 = usuarioReferences.getPostList().child(postID).setValue(centroPostDatabase);
-                                Task task2 = usuarioReferences.getMyPost().child(postID).setValue(centroPostDatabase);
+                                Task task1 = usuarioReferencias.getPostList().child(postID).setValue(centroPostDatabase);
+                                Task task2 = usuarioReferencias.getMyPost().child(postID).setValue(centroPostDatabase);
 
                                 uploadPostContent = Tasks.whenAll(task1, task2);
 
@@ -316,15 +316,15 @@ public class CreatePost extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //INTERFAZ USADA PARA OBTENER CUANTOS POST TIENE EL USUARIO
-        usuarioReferences.myPostCounter(new UsuarioReferences.IDcountMyPost() {
+        usuarioReferencias.myPostCounter(new UsuarioReferencias.IDcountMyPost() {
             @Override
             public void myPostCounter(long c) {
                 postCounter = String.valueOf(c);
             }
         });
 
-        current_user = usuarioReferences.getUser();
-        usuarioReferences.getAllUsers().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
+        current_user = usuarioReferencias.getUser();
+        usuarioReferencias.getAllCenters().child(current_user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usuarioDatabase = dataSnapshot.getValue(UsuarioDatabase.class);

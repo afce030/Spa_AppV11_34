@@ -21,7 +21,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Holders.miniPostHolder;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.Referencias.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,7 +45,7 @@ public class FavoritosActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter adapter;
     private long likes;
 
-    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
+    private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -88,7 +88,7 @@ public class FavoritosActivity extends AppCompatActivity {
         rvSearch = findViewById(R.id.rvSearchPostFavs);
         List<String> userKeys = new ArrayList<>();
 
-        Query query = usuarioReferences.getMyFavs().limitToLast(4);
+        Query query = usuarioReferencias.getMyFavs().limitToLast(4);
 
         FirebaseRecyclerOptions<CentroPostDatabase> options =
                 new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
@@ -117,7 +117,7 @@ public class FavoritosActivity extends AppCompatActivity {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
+                usuarioReferencias.postLikesCounter(userKey, key_post, new UsuarioReferencias.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -211,7 +211,7 @@ public class FavoritosActivity extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferencias.getAllCenters().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

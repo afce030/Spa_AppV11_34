@@ -26,7 +26,7 @@ import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.dateObject;
 import com.example.spa_appv11_34.R;
-import com.example.spa_appv11_34.Referencias.UsuarioReferences;
+import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.example.spa_appv11_34.postViewerActivity;
 import com.example.spa_appv11_34.userPostsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
     private FloatingActionButton createPostB;
     private long likes;
 
-    private UsuarioReferences usuarioReferences = UsuarioReferences.getInstance();
+    private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
 
     public HomeFragment() {
@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
         rvSearch = vista.findViewById(R.id.rvSearchPost);
         List<String> userKeys = new ArrayList<>();
 
-        Query query = usuarioReferences.getPostList().limitToLast(4);
+        Query query = usuarioReferencias.getPostList().limitToLast(4);
 
         FirebaseRecyclerOptions<CentroPostDatabase> options =
                 new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
@@ -152,7 +152,7 @@ public class HomeFragment extends Fragment {
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
 
-                usuarioReferences.postLikesCounter(userKey, key_post, new UsuarioReferences.IDcountLikes() {
+                usuarioReferencias.postLikesCounter(userKey, key_post, new UsuarioReferencias.IDcountLikes() {
                     @Override
                     public void likesCounter(long c, List<String> Keys) {
                         likes = c;
@@ -223,13 +223,13 @@ public class HomeFragment extends Fragment {
 
                                             dateObject date = new dateObject();
 
-                                            Task task1 = usuarioReferences.getLikesAnyPost()
+                                            Task task1 = usuarioReferencias.getLikesAnyPost()
                                                     .child(userKey)
                                                     .child(model.getUid_post())
-                                                    .child(usuarioReferences.getUser())
+                                                    .child(usuarioReferencias.getUser())
                                                     .setValue(date);
 
-                                            Task task2 = usuarioReferences.getMyFavs().child(model.getUid_post()).setValue(model);
+                                            Task task2 = usuarioReferencias.getMyFavs().child(model.getUid_post()).setValue(model);
 
                                             Task<Void> upload = Tasks.whenAll(task1,task2);
 
@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        usuarioReferences.getAllUsers().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        usuarioReferencias.getAllCenters().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);

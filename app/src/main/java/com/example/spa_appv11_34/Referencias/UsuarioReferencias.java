@@ -14,7 +14,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioReferences {
+public class UsuarioReferencias {
 
     public interface IDcountFollowing {
         public void followingCounter(long c, List<String> followingKeys);
@@ -24,7 +24,7 @@ public class UsuarioReferences {
         public void likesCounter(long c, List<String> Keys);
     }
 
-    private static UsuarioReferences usuarioReferences = null;
+    private static UsuarioReferencias usuarioReferencias = null;
 
     private FirebaseDatabase firebaseDatabase;
 
@@ -35,15 +35,22 @@ public class UsuarioReferences {
 
     private DatabaseReference postList;
 
-    private DatabaseReference allUsers;
+    private DatabaseReference allCenters;
     private DatabaseReference peopleIfollow;
 
     private FirebaseStorage firebaseStorage;
     private StorageReference myProfileImages;
 
-    private String user;
+    private String user;//llave del usuario
 
-    public UsuarioReferences() {
+    synchronized public static UsuarioReferencias getInstance() {
+        if (usuarioReferencias == null) {
+            usuarioReferencias = new UsuarioReferencias();
+        }
+        return usuarioReferencias;
+    }
+
+    public UsuarioReferencias() {
 
         user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -61,16 +68,9 @@ public class UsuarioReferences {
 
         postList = firebaseDatabase.getReference("PostList");
 
-        allUsers = firebaseDatabase.getReference().child("Usuarios");
+        allCenters = firebaseDatabase.getReference().child("Centros");
         peopleIfollow = firebaseDatabase.getReference().child("Following").child(user);
 
-    }
-
-    synchronized public static UsuarioReferences getInstance() {
-        if (usuarioReferences == null) {
-            usuarioReferences = new UsuarioReferences();
-        }
-        return usuarioReferences;
     }
 
     public String getUser() {
@@ -89,12 +89,12 @@ public class UsuarioReferences {
         this.postList = postList;
     }
 
-    public DatabaseReference getAllUsers() {
-        return allUsers;
+    public DatabaseReference getAllCenters() {
+        return allCenters;
     }
 
-    public void setAllUsers(DatabaseReference allUsers) {
-        this.allUsers = allUsers;
+    public void setAllCenters(DatabaseReference allCenters) {
+        this.allCenters = allCenters;
     }
 
     public DatabaseReference getLikesAnyPost() {
