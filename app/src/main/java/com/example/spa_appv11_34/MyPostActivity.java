@@ -65,7 +65,6 @@ public class MyPostActivity extends AppCompatActivity {
     private long likes = 0;
     private long totalLikes = 0;
 
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -122,14 +121,14 @@ public class MyPostActivity extends AppCompatActivity {
 
         //Clave del usuario que quiere seguir a otro
         final String current_user = usuarioReferencias.getUser();
-
+/*
         usuarioReferencias.followersCounter(current_user,new UsuarioReferencias.IDcountFollowers() {
             @Override
             public void followersCounter(long c, List<String> followerKeys) {
                 followersCounter.setText(String.valueOf(c));
             }
         });
-
+*/
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

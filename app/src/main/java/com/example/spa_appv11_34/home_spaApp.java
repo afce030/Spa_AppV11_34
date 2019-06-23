@@ -94,7 +94,7 @@ public class home_spaApp extends AppCompatActivity implements HomeFragment.OnFra
 
                     intencion.putExtra("nombres", usuarioDatabase.getNombre());
                     intencion.putExtra("apellidos", usuarioDatabase.getApellidos());
-                    intencion.putExtra("username", usuarioDatabase.getNombreUsuario());
+                    intencion.putExtra("nombreUsuario", usuarioDatabase.getNombreUsuario());
                     intencion.putExtra("historia", usuarioDatabase.getHistoria());
                     intencion.putExtra("foto", usuarioDatabase.getURL_Foto());
                     intencion.putExtra("llaveUsuario", usuarioDatabase.getLlaveUsuario());
