@@ -6,7 +6,6 @@ public class CentroDatabase {
     private String email;
     private String historia;
     private String URL_Foto;
-
     private String llaveCentro;
     private String llaveUsuario;
 

@@ -35,9 +35,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegistrarNegocio"></activity>
-        <activity android:name=".negocioVisitante" />
+        <activity android:name=".centroVisitante" />
         <activity android:name=".usuarioVisitante" />
-        <activity android:name=".negocioPropio" />
+        <activity android:name=".centroPropio" />
         <activity android:name=".usuarioPropio" />
 
         <service

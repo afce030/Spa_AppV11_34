@@ -12,6 +12,7 @@ public class UsuarioDatabase {
     private String Genero;
     private String celular;
     private String llaveUsuario;
+    private String llaveCentro;
 
     public UsuarioDatabase() {
     }
@@ -95,4 +96,13 @@ public class UsuarioDatabase {
     public void setLlaveUsuario(String llaveUsuario) {
         this.llaveUsuario = llaveUsuario;
     }
+
+    public String getLlaveCentro() {
+        return llaveCentro;
+    }
+
+    public void setLlaveCentro(String llaveCentro) {
+        this.llaveCentro = llaveCentro;
+    }
+
 }

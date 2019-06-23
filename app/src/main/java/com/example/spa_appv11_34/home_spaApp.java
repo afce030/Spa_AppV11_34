@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroDatabase;
 import com.example.spa_appv11_34.Fragmentos.HomeFragment;
 import com.example.spa_appv11_34.Fragmentos.NotificationFragment;
 import com.example.spa_appv11_34.Fragmentos.SearchFragment;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
+import com.example.spa_appv11_34.Referencias.CentroReferencias;
 import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,8 +36,12 @@ public class home_spaApp extends AppCompatActivity implements HomeFragment.OnFra
 
     private FirebaseAuth firebaseAuth;
     private String current_user;
+
     private UsuarioDatabase usuarioDatabase;
     private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
+
+    private CentroDatabase centroDatabase;
+    private CentroReferencias centroReferencias = CentroReferencias.getInstance();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -82,15 +88,30 @@ public class home_spaApp extends AppCompatActivity implements HomeFragment.OnFra
         imagenPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intencion = new Intent(home_spaApp.this, MyPostActivity.class);
 
-                intencion.putExtra("nombres",usuarioDatabase.getNombre());
-                intencion.putExtra("apellidos", usuarioDatabase.getApellidos());
-                intencion.putExtra("username", usuarioDatabase.getNombreUsuario());
-                intencion.putExtra("historia", usuarioDatabase.getHistoria());
-                intencion.putExtra("foto", usuarioDatabase.getURL_Foto());
+                if(usuarioDatabase.getLlaveCentro().equals("No center")) {
+                    Intent intencion = new Intent(home_spaApp.this, usuarioPropio.class);
 
-                startActivity(intencion);
+                    intencion.putExtra("nombres", usuarioDatabase.getNombre());
+                    intencion.putExtra("apellidos", usuarioDatabase.getApellidos());
+                    intencion.putExtra("username", usuarioDatabase.getNombreUsuario());
+                    intencion.putExtra("historia", usuarioDatabase.getHistoria());
+                    intencion.putExtra("foto", usuarioDatabase.getURL_Foto());
+                    intencion.putExtra("llaveUsuario", usuarioDatabase.getLlaveUsuario());
+
+                    startActivity(intencion);
+                }
+                else{
+                    Intent intencion = new Intent(home_spaApp.this, centroPropio.class);
+
+                    intencion.putExtra("nombreCentro", centroDatabase.getNombreCentro());
+                    intencion.putExtra("historia", centroDatabase.getHistoria());
+                    intencion.putExtra("foto", centroDatabase.getURL_Foto());
+                    intencion.putExtra("llaveCentro", centroDatabase.getLlaveCentro());
+                    intencion.putExtra("llaveUsuario", centroDatabase.getLlaveUsuario());
+
+                    startActivity(intencion);
+                }
             }
         });
 
