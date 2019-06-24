@@ -45,7 +45,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class usuarioPropio extends AppCompatActivity {
 
-
     private TextView username;
     private TextView fullname;
     private TextView history;
@@ -64,9 +63,6 @@ public class usuarioPropio extends AppCompatActivity {
     private UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
 
     private String llaveUsuario;
-
-    private long likes = 0;
-    private long totalLikes = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -109,11 +105,10 @@ public class usuarioPropio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_propio);
 
-        username = findViewById(R.id.tvUsernameMyPost);
-        fullname = findViewById(R.id.tvFullnameMyPost);
-        history = findViewById(R.id.tvHistoryMyPost);
-        fotoPerfil = findViewById(R.id.civFotoPerfil);
-        post = findViewById(R.id.btnPostMyPostAct);
+        username = findViewById(R.id.tvUsernameUsuarioPropio);
+        fullname = findViewById(R.id.tvFullnameUsuarioPropio);
+        history = findViewById(R.id.tvHistoryUsuarioPropio);
+        fotoPerfil = findViewById(R.id.civFotoPerfilUsuarioPropio);
 
         followersCounter = findViewById(R.id.tvFollowersCounter);
         likesUserCounter = findViewById(R.id.tvLikesCounter);
@@ -306,17 +301,6 @@ public class usuarioPropio extends AppCompatActivity {
 
                 //Función para extraer foto y nombre del creador del post
                 putPersonalData(userKey,holder.getFotoUser(),holder.getUserNamePost());
-
-                usuarioReferencias.postLikesCounter(userKey, key_post, new UsuarioReferencias.IDcountLikes() {
-                    @Override
-                    public void likesCounter(long c, List<String> Keys) {
-                        likes = c;
-                        holder.getLikesPost().setText(String.valueOf(likes));
-
-                        totalLikes = totalLikes+likes;
-                        likesUserCounter.setText(String.valueOf(totalLikes));
-                    }
-                });
 
                 List<String> imagesList = new ArrayList<>();
 
