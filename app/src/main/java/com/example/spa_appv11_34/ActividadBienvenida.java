@@ -79,6 +79,7 @@ public class ActividadBienvenida extends AppCompatActivity {
                                     usuarioDatabase.setGenero("No especifica");
                                     usuarioDatabase.setCelular("No especificado");
                                     usuarioDatabase.setLlaveUsuario(currentUser.getUid());
+                                    usuarioDatabase.setLlaveCentro("No center");
 
                                     Task task1 = databaseReference1.setValue(usuarioDatabase);
 
@@ -109,7 +110,7 @@ public class ActividadBienvenida extends AppCompatActivity {
 
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(ActividadBienvenida.this, "No pudimos registrar tu usuario, verifica tu acceso a internet", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ActividadBienvenida.this, "No pudimos registrar tu usuario, verifica tu conexión a internet", Toast.LENGTH_SHORT).show();
 
                                 }
 

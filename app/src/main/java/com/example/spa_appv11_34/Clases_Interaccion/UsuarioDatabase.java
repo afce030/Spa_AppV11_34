@@ -1,5 +1,7 @@
 package com.example.spa_appv11_34.Clases_Interaccion;
 
+import com.google.firebase.database.ServerValue;
+
 public class UsuarioDatabase {
 
     private String nombre;
@@ -14,7 +16,11 @@ public class UsuarioDatabase {
     private String llaveUsuario;
     private String llaveCentro;
 
+    //Fecha de creación del usuario
+    private Object createdTimestamp;
+
     public UsuarioDatabase() {
+        createdTimestamp = ServerValue.TIMESTAMP;
     }
 
     public String getNombre() {
@@ -105,4 +111,7 @@ public class UsuarioDatabase {
         this.llaveCentro = llaveCentro;
     }
 
+    public Object getCreatedTimestamp() {
+        return createdTimestamp;
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.spa_appv11_34.Clases_Interaccion;
 
+import com.google.firebase.database.ServerValue;
+
 public class CentroDatabase {
 
     private String nombreCentro;
@@ -9,9 +11,11 @@ public class CentroDatabase {
     private String llaveCentro;
     private String llaveUsuario;
 
-    private int calificacion;
+    //Fecha de creación del centro
+    private Object createdTimestamp;
 
     public CentroDatabase() {
+        createdTimestamp = ServerValue.TIMESTAMP;
     }
 
     public String getNombreCentro() {
@@ -44,14 +48,6 @@ public class CentroDatabase {
 
     public void setURL_Foto(String URL_Foto) {
         this.URL_Foto = URL_Foto;
-    }
-
-    public int getCalificacion() {
-        return calificacion;
-    }
-
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
     }
 
     public String getLlaveUsuario() {
