@@ -213,6 +213,14 @@ public class CentroReferencias {
         this.centro = centro;
     }
 
+    public DatabaseReference getAllCenters() {
+        return allCenters;
+    }
+
+    public void setAllCenters(DatabaseReference allCenters) {
+        this.allCenters = allCenters;
+    }
+
     public void postLikesCounter(String creator, String keyPost, final IDcountLikes iDcountLikes) {
 
         likesAnyPost.child(creator).child(keyPost).addListenerForSingleValueEvent(new ValueEventListener() {

@@ -21,10 +21,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
 import com.example.spa_appv11_34.Holders.PostHolder;
+import com.example.spa_appv11_34.Referencias.CentroReferencias;
 import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -61,6 +63,9 @@ public class usuarioPropio extends AppCompatActivity {
     private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
     private UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
+
+    private CentroDatabase centroDatabase = new CentroDatabase();
+    private CentroReferencias centroReferencias = CentroReferencias.getInstance();
 
     private String llaveUsuario;
 
@@ -334,8 +339,8 @@ public class usuarioPropio extends AppCompatActivity {
                                         intencion.putExtra("img3", model.getURL_Foto3());
                                         intencion.putExtra("img4", model.getURL_Foto4());
                                         intencion.putExtra("texto", model.getTexto());
-                                        intencion.putExtra("usuario", usuarioDatabase.getNombreUsuario());
-                                        intencion.putExtra("foto", usuarioDatabase.getURL_Foto());
+                                        intencion.putExtra("centro", centroDatabase.getNombreCentro());
+                                        intencion.putExtra("foto", centroDatabase.getURL_Foto());
                                         startActivity(intencion);
                                     }
                                 });
@@ -365,7 +370,7 @@ public class usuarioPropio extends AppCompatActivity {
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 
         final TaskCompletionSource<DataSnapshot> dbSource = new TaskCompletionSource<>();
-        usuarioReferencias.getAllCenters().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        centroReferencias.getAllCenters().child(userKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 dbSource.setResult(dataSnapshot);
@@ -385,9 +390,9 @@ public class usuarioPropio extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 DataSnapshot data = dbTask.getResult();
-                usuarioDatabase = data.getValue(UsuarioDatabase.class);
-                Glide.with(usuarioPropio.this).load(usuarioDatabase.getURL_Foto()).into(foto);
-                nombre.setText(usuarioDatabase.getNombreUsuario());
+                centroDatabase = data.getValue(CentroDatabase.class);
+                Glide.with(usuarioPropio.this).load(centroDatabase.getURL_Foto()).into(foto);
+                nombre.setText(centroDatabase.getNombreCentro());
             }
         });
 
@@ -413,9 +418,8 @@ public class usuarioPropio extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        adapter.startListening();
         asignarControles();
-
+        adapter.startListening();
     }
 
     @Override
