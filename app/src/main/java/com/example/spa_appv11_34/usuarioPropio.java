@@ -129,14 +129,14 @@ public class usuarioPropio extends AppCompatActivity {
             }
         });
 
-        LinearLayout back_layer = findViewById(R.id.returningLayer);
+        LinearLayout back_layer = findViewById(R.id.returningLayerUsuarioPropio);
 
-        ImageButton alien_button = findViewById(R.id.nav_pan);
+        ImageButton alien_button = findViewById(R.id.nav_panUsuarioPropio);
         alien_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                LinearLayout menuLayer = findViewById(R.id.menuLayer);
+                LinearLayout menuLayer = findViewById(R.id.menuLayerUsuarioPropio);
                 menuLayer.setVisibility(View.VISIBLE);
 
             }
@@ -146,13 +146,13 @@ public class usuarioPropio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                LinearLayout menuLayer = findViewById(R.id.menuLayer);
+                LinearLayout menuLayer = findViewById(R.id.menuLayerUsuarioPropio);
                 menuLayer.setVisibility(View.GONE);
 
             }
         });
 
-        LinearLayout perfil = findViewById(R.id.PersonalizarPerfil);
+        LinearLayout perfil = findViewById(R.id.PersonalizarPerfilUsuarioPropio);
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +163,7 @@ public class usuarioPropio extends AppCompatActivity {
             }
         });
 
-        LinearLayout pagos = findViewById(R.id.ConfigurationPagos);
+        LinearLayout pagos = findViewById(R.id.ConfigurationPagosUsuarioPropio);
 
         pagos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +204,7 @@ public class usuarioPropio extends AppCompatActivity {
             }
         });
 
-        LinearLayout favs =  findViewById(R.id.VerFavs);
+        LinearLayout favs =  findViewById(R.id.VerFavsUsuarioPropio);
 
         favs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,7 +213,7 @@ public class usuarioPropio extends AppCompatActivity {
             }
         });
 
-        LinearLayout ajustes = findViewById(R.id.VerAjustes);
+        LinearLayout ajustes = findViewById(R.id.VerAjustesUsuarioPropio);
 
         ajustes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,7 +255,7 @@ public class usuarioPropio extends AppCompatActivity {
             }
         });
 
-        LinearLayout compartir = findViewById(R.id.ConfiguracionCompartir);
+        LinearLayout compartir = findViewById(R.id.ConfiguracionCompartirUsuarioPropio);
 
         compartir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,7 +264,7 @@ public class usuarioPropio extends AppCompatActivity {
             }
         });
 
-        LinearLayout soporte = findViewById(R.id.VerSoporte);
+        LinearLayout soporte = findViewById(R.id.VerSoporteUsuarioPropio);
 
         soporte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -354,7 +354,6 @@ public class usuarioPropio extends AppCompatActivity {
 
                 holder.getImagePost().stopAutoCycle();
 
-
             }
 
         };
@@ -364,7 +363,6 @@ public class usuarioPropio extends AppCompatActivity {
         rvSearch.setAdapter(adapter);
 
     }
-
 
     public void putPersonalData(String userKey, final CircleImageView foto, final TextView nombre){
 

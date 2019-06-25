@@ -34,7 +34,7 @@
                     android:src="@drawable/usuario_default" />
 
                 <TextView
-                    android:id="@+id/tvUsernameCentroPropio"
+                    android:id="@+id/tvCenternameCentroPropio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -386,7 +386,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ConfiguracionCompartir"
+                android:id="@+id/ConfiguracionCompartirCentroPropio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

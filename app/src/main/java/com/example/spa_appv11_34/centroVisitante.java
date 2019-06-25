@@ -9,6 +9,6 @@ public class centroVisitante extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_negocio_visitante);
+        setContentView(R.layout.activity_centro_visitante);
     }
 }
