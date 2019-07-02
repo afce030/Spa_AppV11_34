@@ -24,7 +24,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferencias;
 import com.example.spa_appv11_34.Holders.PostHolder;
 import com.example.spa_appv11_34.Referencias.CentroReferencias;
 import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
@@ -62,7 +62,7 @@ public class usuarioPropio extends AppCompatActivity {
 
     private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
-    private UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
+    private UsuarioPreferencias usuarioPreferencias = new UsuarioPreferencias();
 
     private CentroDatabase centroDatabase = new CentroDatabase();
     private CentroReferencias centroReferencias = CentroReferencias.getInstance();
@@ -170,12 +170,12 @@ public class usuarioPropio extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
+                final TaskCompletionSource<UsuarioPreferencias> task = new TaskCompletionSource<>();
 
                 usuarioReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
+                        task.setResult(dataSnapshot.getValue(UsuarioPreferencias.class));
                     }
 
                     @Override
@@ -184,20 +184,20 @@ public class usuarioPropio extends AppCompatActivity {
                     }
                 });
 
-                Task<UsuarioPreferences> Task = task.getTask();
+                Task<UsuarioPreferencias> Task = task.getTask();
 
-                Task.addOnSuccessListener(new OnSuccessListener<UsuarioPreferences>() {
+                Task.addOnSuccessListener(new OnSuccessListener<UsuarioPreferencias>() {
                     @Override
-                    public void onSuccess(UsuarioPreferences user) {
-                        usuarioPreferences.setTheme(user.getTheme());
-                        usuarioPreferences.setNotificaciones(user.getNotificaciones());
-                        usuarioPreferences.setIdioma(user.getIdioma());
-                        usuarioPreferences.setCreditCard(user.getCreditCard());
-                        usuarioPreferences.setPayPal(user.getPayPal());
+                    public void onSuccess(UsuarioPreferencias user) {
+                        usuarioPreferencias.setTheme(user.getTheme());
+                        usuarioPreferencias.setNotificaciones(user.getNotificaciones());
+                        usuarioPreferencias.setIdioma(user.getIdioma());
+                        usuarioPreferencias.setCreditCard(user.getCreditCard());
+                        usuarioPreferencias.setPayPal(user.getPayPal());
 
                         Intent intencion = new Intent(usuarioPropio.this,PagosActivity.class);
-                        intencion.putExtra("tajeta",usuarioPreferences.getCreditCard());
-                        intencion.putExtra("paypal",usuarioPreferences.getPayPal());
+                        intencion.putExtra("tajeta", usuarioPreferencias.getCreditCard());
+                        intencion.putExtra("paypal", usuarioPreferencias.getPayPal());
                         startActivity(intencion);
                     }
                 });
@@ -219,12 +219,12 @@ public class usuarioPropio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
+                final TaskCompletionSource<UsuarioPreferencias> task = new TaskCompletionSource<>();
 
                 usuarioReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
+                        task.setResult(dataSnapshot.getValue(UsuarioPreferencias.class));
                     }
 
                     @Override
@@ -233,21 +233,21 @@ public class usuarioPropio extends AppCompatActivity {
                     }
                 });
 
-                Task<UsuarioPreferences> Task = task.getTask();
+                Task<UsuarioPreferencias> Task = task.getTask();
 
-                Task.addOnSuccessListener(new OnSuccessListener<UsuarioPreferences>() {
+                Task.addOnSuccessListener(new OnSuccessListener<UsuarioPreferencias>() {
                     @Override
-                    public void onSuccess(UsuarioPreferences user) {
-                        usuarioPreferences.setTheme(user.getTheme());
-                        usuarioPreferences.setNotificaciones(user.getNotificaciones());
-                        usuarioPreferences.setIdioma(user.getIdioma());
-                        usuarioPreferences.setCreditCard(user.getCreditCard());
-                        usuarioPreferences.setPayPal(user.getPayPal());
+                    public void onSuccess(UsuarioPreferencias user) {
+                        usuarioPreferencias.setTheme(user.getTheme());
+                        usuarioPreferencias.setNotificaciones(user.getNotificaciones());
+                        usuarioPreferencias.setIdioma(user.getIdioma());
+                        usuarioPreferencias.setCreditCard(user.getCreditCard());
+                        usuarioPreferencias.setPayPal(user.getPayPal());
 
                         Intent intencion = new Intent(usuarioPropio.this,AjustesActivity.class);
-                        intencion.putExtra("tema",usuarioPreferences.getTheme());
-                        intencion.putExtra("idioma",usuarioPreferences.getIdioma());
-                        intencion.putExtra("notificaciones",usuarioPreferences.getNotificaciones());
+                        intencion.putExtra("tema", usuarioPreferencias.getTheme());
+                        intencion.putExtra("idioma", usuarioPreferencias.getIdioma());
+                        intencion.putExtra("notificaciones", usuarioPreferencias.getNotificaciones());
                         startActivity(intencion);
                     }
                 });

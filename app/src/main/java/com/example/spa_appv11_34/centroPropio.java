@@ -21,10 +21,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroDatabase;
 import com.example.spa_appv11_34.Clases_Interaccion.CentroPostDatabase;
+import com.example.spa_appv11_34.Clases_Interaccion.CentroPreferencias;
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferencias;
 import com.example.spa_appv11_34.Holders.PostHolder;
+import com.example.spa_appv11_34.Referencias.CentroReferencias;
 import com.example.spa_appv11_34.Referencias.UsuarioReferencias;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -61,7 +64,11 @@ public class centroPropio extends AppCompatActivity {
 
     private UsuarioReferencias usuarioReferencias = UsuarioReferencias.getInstance();
     private UsuarioDatabase usuarioDatabase = new UsuarioDatabase();
-    private UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
+    private UsuarioPreferencias usuarioPreferencias = new UsuarioPreferencias();
+
+    private CentroReferencias centroReferencias = CentroReferencias.getInstance();
+    private CentroDatabase centroDatabase = new CentroDatabase();
+    private CentroPreferencias centroPreferencias = new CentroPreferencias();
 
     private long likes = 0;
     private long totalLikes = 0;
@@ -178,12 +185,12 @@ public class centroPropio extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
+                final TaskCompletionSource<CentroPreferencias> task = new TaskCompletionSource<>();
 
-                usuarioReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
+                centroReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
+                        task.setResult(dataSnapshot.getValue(CentroPreferencias.class));
                     }
 
                     @Override
@@ -192,22 +199,25 @@ public class centroPropio extends AppCompatActivity {
                     }
                 });
 
-                Task<UsuarioPreferences> Task = task.getTask();
+                Task<CentroPreferencias> Task = task.getTask();
 
-                Task.addOnSuccessListener(new OnSuccessListener<UsuarioPreferences>() {
+                Task.addOnSuccessListener(new OnSuccessListener<CentroPreferencias>() {
                     @Override
-                    public void onSuccess(UsuarioPreferences user) {
-                        usuarioPreferences.setTheme(user.getTheme());
-                        usuarioPreferences.setNotificaciones(user.getNotificaciones());
-                        usuarioPreferences.setIdioma(user.getIdioma());
-                        usuarioPreferences.setCreditCard(user.getCreditCard());
-                        usuarioPreferences.setPayPal(user.getPayPal());
+                    public void onSuccess(CentroPreferencias center) {
+
+                        centroPreferencias.setTheme(center.getTheme());
+                        centroPreferencias.setNotificaciones(center.getNotificaciones());
+                        centroPreferencias.setIdioma(center.getIdioma());
+                        centroPreferencias.setRecibirCreditCard(center.getRecibirCreditCard());
+                        centroPreferencias.setRecibirPayPal(center.getRecibirPayPal());
 
                         Intent intencion = new Intent(centroPropio.this,PagosActivity.class);
-                        intencion.putExtra("tajeta",usuarioPreferences.getCreditCard());
-                        intencion.putExtra("paypal",usuarioPreferences.getPayPal());
+                        intencion.putExtra("tajeta", centroPreferencias.getRecibirCreditCard());
+                        intencion.putExtra("paypal", centroPreferencias.getRecibirPayPal());
                         startActivity(intencion);
+
                     }
+
                 });
             }
         });
@@ -227,12 +237,12 @@ public class centroPropio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                final TaskCompletionSource<UsuarioPreferences> task = new TaskCompletionSource<>();
+                final TaskCompletionSource<CentroPreferencias> task = new TaskCompletionSource<>();
 
-                usuarioReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
+                centroReferencias.getMyPreferences().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        task.setResult(dataSnapshot.getValue(UsuarioPreferences.class));
+                        task.setResult(dataSnapshot.getValue(CentroPreferencias.class));
                     }
 
                     @Override
@@ -241,21 +251,21 @@ public class centroPropio extends AppCompatActivity {
                     }
                 });
 
-                Task<UsuarioPreferences> Task = task.getTask();
+                Task<CentroPreferencias> Task = task.getTask();
 
-                Task.addOnSuccessListener(new OnSuccessListener<UsuarioPreferences>() {
+                Task.addOnSuccessListener(new OnSuccessListener<CentroPreferencias>() {
                     @Override
-                    public void onSuccess(UsuarioPreferences user) {
-                        usuarioPreferences.setTheme(user.getTheme());
-                        usuarioPreferences.setNotificaciones(user.getNotificaciones());
-                        usuarioPreferences.setIdioma(user.getIdioma());
-                        usuarioPreferences.setCreditCard(user.getCreditCard());
-                        usuarioPreferences.setPayPal(user.getPayPal());
+                    public void onSuccess(CentroPreferencias center) {
+                        centroPreferencias.setTheme(center.getTheme());
+                        centroPreferencias.setNotificaciones(center.getNotificaciones());
+                        centroPreferencias.setIdioma(center.getIdioma());
+                        centroPreferencias.setRecibirCreditCard(center.getRecibirCreditCard());
+                        centroPreferencias.setRecibirPayPal(center.getRecibirPayPal());
 
                         Intent intencion = new Intent(centroPropio.this,AjustesActivity.class);
-                        intencion.putExtra("tema",usuarioPreferences.getTheme());
-                        intencion.putExtra("idioma",usuarioPreferences.getIdioma());
-                        intencion.putExtra("notificaciones",usuarioPreferences.getNotificaciones());
+                        intencion.putExtra("tema", centroPreferencias.getTheme());
+                        intencion.putExtra("idioma", centroPreferencias.getIdioma());
+                        intencion.putExtra("notificaciones", centroPreferencias.getNotificaciones());
                         startActivity(intencion);
                     }
                 });
@@ -284,7 +294,7 @@ public class centroPropio extends AppCompatActivity {
 
         List<String> userKeys = new ArrayList<>();
 
-        Query query = usuarioReferencias.getPostList().limitToLast(2);
+        Query query = centroReferencias.getPostList().limitToLast(2);
 
         FirebaseRecyclerOptions<CentroPostDatabase> options =
                 new FirebaseRecyclerOptions.Builder<CentroPostDatabase>()
@@ -372,7 +382,6 @@ public class centroPropio extends AppCompatActivity {
                 }
 
                 holder.getImagePost().stopAutoCycle();
-
 
             }
 

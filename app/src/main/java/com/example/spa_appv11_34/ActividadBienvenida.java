@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.spa_appv11_34.Clases_Interaccion.UsuarioDatabase;
-import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferences;
+import com.example.spa_appv11_34.Clases_Interaccion.UsuarioPreferencias;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -84,12 +84,12 @@ public class ActividadBienvenida extends AppCompatActivity {
                                     Task task1 = databaseReference1.setValue(usuarioDatabase);
 
                                     databaseReference2 = firebaseDatabase.getReference("Preferencias/" + currentUser.getUid());
-                                    UsuarioPreferences usuarioPreferences = new UsuarioPreferences();
-                                    usuarioPreferences.setIdioma("Español");
-                                    usuarioPreferences.setNotificaciones(true);
-                                    usuarioPreferences.setTheme("Claro");
-                                    usuarioPreferences.setCreditCard(false);
-                                    usuarioPreferences.setPayPal(false);
+                                    UsuarioPreferencias usuarioPreferencias = new UsuarioPreferencias();
+                                    usuarioPreferencias.setIdioma("Español");
+                                    usuarioPreferencias.setNotificaciones(true);
+                                    usuarioPreferencias.setTheme("Claro");
+                                    usuarioPreferencias.setCreditCard(false);
+                                    usuarioPreferencias.setPayPal(false);
 
                                     Task task2 = databaseReference2.setValue(usuarioDatabase);
 

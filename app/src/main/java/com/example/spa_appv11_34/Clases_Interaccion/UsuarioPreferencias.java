@@ -1,6 +1,6 @@
 package com.example.spa_appv11_34.Clases_Interaccion;
 
-public class UsuarioPreferences {
+public class UsuarioPreferencias {
 
     //Configuration preferences
     private String theme;
@@ -10,7 +10,7 @@ public class UsuarioPreferences {
     private Boolean creditCard;
     private Boolean payPal;
 
-    public UsuarioPreferences() {
+    public UsuarioPreferencias() {
 
     }
 
